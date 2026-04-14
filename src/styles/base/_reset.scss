@@ -1,3 +1,5 @@
+@use './breakpoints' as bp;
+
 :root {
   font-family: 'TT2020E', serif;
   font-synthesis: none;
@@ -19,4 +21,12 @@ body {
 
 #root {
   min-height: 100vh;
+}
+
+@include bp.tablet-down {
+  body {
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
 }

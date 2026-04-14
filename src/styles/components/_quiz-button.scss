@@ -1,3 +1,5 @@
+@use '../base/breakpoints' as bp;
+
 .quiz-button {
   font-family: 'SongerBold', serif;
   display: flex;
@@ -31,7 +33,7 @@
   opacity: 0.5;
 }
 
-@media (max-width: 1200px) {
+@include bp.tablet-down {
   .quiz-button {
     padding: 10px 12px;
   }
@@ -45,7 +47,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@include bp.mobile-down {
   .quiz-button {
     gap: 3px;
     padding: 10px;

@@ -1,3 +1,5 @@
+@use '../base/breakpoints' as bp;
+
 .slider {
   flex: 1;
   height: auto;
@@ -56,4 +58,35 @@
   width: auto;
   height: 100%;
   max-width: none;
+}
+
+@include bp.tablet-down {
+  .slider,
+  .hero-swiper,
+  .hero-swiper .swiper-wrapper,
+  .hero-swiper .swiper-slide {
+    height: 54vh !important;
+    min-height: 54vh !important;
+    max-height: 54vh !important;
+  }
+}
+
+@include bp.mobile-down {
+  .slider,
+  .hero-swiper,
+  .hero-swiper .swiper-wrapper,
+  .hero-swiper .swiper-slide {
+    height: 50vh !important;
+    min-height: 50vh !important;
+    max-height: 50vh !important;
+  }
+
+  .slide-image,
+  .hero-swiper .swiper-slide-active .slide-image {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: bottom center;
+  }
 }
