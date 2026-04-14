@@ -1,0 +1,45 @@
+.hero-info {
+  flex: 0 0 auto;
+  padding: 0;
+}
+
+.hero-nameplate {
+  font-family: 'SongerBold', serif;
+  margin: 0 0 12px;
+  padding: 12px 14px;
+  background: #e5c07b;
+  color: #000;
+  font-size: 1.45rem;
+  line-height: 1.25;
+}
+
+.hero-description {
+  margin: 0;
+  color: #e5c07b;
+  font-size: 1.05rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 1200px) {
+  .hero-nameplate {
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+  }
+
+  .hero-description {
+    font-size: 0.98rem;
+    line-height: 1.4;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-nameplate {
+    font-size: 1.05rem;
+    padding: 10px 12px;
+  }
+
+  .hero-description {
+    font-size: 0.9rem;
+    line-height: 1.35;
+  }
+}

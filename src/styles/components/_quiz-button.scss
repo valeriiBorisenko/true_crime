@@ -1,0 +1,61 @@
+.quiz-button {
+  font-family: 'SongerBold', serif;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  text-align: left;
+  border: 0;
+  padding: 12px 14px;
+  cursor: pointer;
+  color: #000;
+  background: #e5c07b;
+  line-height: 1.25;
+  opacity: 1;
+  transition: opacity 0.7s;
+	text-decoration: none;
+}
+
+.quiz-button__title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.quiz-button__subtitle {
+  font-family: 'TT2020E', serif;
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+
+.quiz-button:hover {
+  opacity: 0.5;
+}
+
+@media (max-width: 1200px) {
+  .quiz-button {
+    padding: 10px 12px;
+  }
+
+  .quiz-button__title {
+    font-size: 1.05rem;
+  }
+
+  .quiz-button__subtitle {
+    font-size: 0.76rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .quiz-button {
+    gap: 3px;
+    padding: 10px;
+  }
+
+  .quiz-button__title {
+    font-size: 0.96rem;
+  }
+
+  .quiz-button__subtitle {
+    font-size: 0.7rem;
+  }
+}
