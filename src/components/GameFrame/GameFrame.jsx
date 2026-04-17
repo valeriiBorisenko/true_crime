@@ -1,9 +1,11 @@
+import { content } from '../../data/content'
+
 function GameFrame() {
   return (
     <div className="game-frame">
       <iframe
-        title="True Crime Unity Game"
-        src="https://true-crime-test-version.netlify.app/"
+        title={content.gameFrame.title}
+        src={content.gameFrame.src}
         loading="lazy"
       />
     </div>

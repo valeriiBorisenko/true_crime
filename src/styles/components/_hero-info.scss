@@ -1,47 +1,154 @@
-@use '../base/breakpoints' as bp;
-
 .hero-info {
+  position: relative;
   flex: 0 0 auto;
-  padding: 0;
+  margin-left: 20px;
+	background: var(--color-accent-gold-soft);
+	border: 1px solid var(--color-black);
+  border-radius: 10px 10px 0 0;
+	overflow: hidden;
+	padding: 12px 14px 0;
+  -webkit-clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 87%,
+    97% 95%,
+    93% 89%,
+    89% 97%,
+    84% 90%,
+    80% 99%,
+    74% 91%,
+    70% 96%,
+    64% 88%,
+    59% 100%,
+    53% 90%,
+    48% 97%,
+    43% 92%,
+    37% 99%,
+    31% 89%,
+    26% 95%,
+    20% 90%,
+    14% 98%,
+    9% 91%,
+    4% 96%,
+    0 88%
+  );
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 87%,
+    97% 95%,
+    93% 89%,
+    89% 97%,
+    84% 90%,
+    80% 99%,
+    74% 91%,
+    70% 96%,
+    64% 88%,
+    59% 100%,
+    53% 90%,
+    48% 97%,
+    43% 92%,
+    37% 99%,
+    31% 89%,
+    26% 95%,
+    20% 90%,
+    14% 98%,
+    9% 91%,
+    4% 96%,
+    0 88%
+  );
+}
+
+.hero-info::before,
+.hero-info::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+  opacity: 0.35;
+  background:
+    repeating-linear-gradient(
+      135deg,
+      var(--color-black) 0 1px,
+      transparent 1px 3px
+    );
+}
+
+.hero-info::before {
+  top: -1px;
+  left: -1px;
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.hero-info::after {
+  right: -1px;
+  bottom: 10px;
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+.hero-info-wrap {
+	height: 0;
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none;
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s ease;
+}
+
+.hero-info-wrap.is-visible {
+	height: auto;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .hero-nameplate {
   font-family: 'SongerBold', serif;
-  margin: 0 0 12px;
-  padding: 12px 14px;
-  background: #e5c07b;
-  color: #000;
+	margin-bottom: 12px;
+  color: var(--color-black);
   font-size: 1.45rem;
   line-height: 1.25;
 }
 
 .hero-description {
+  position: relative;
   margin: 0;
-  color: #e5c07b;
+  background: var(--color-white);
+  color: var(--color-black);
   font-size: 1.05rem;
   line-height: 1.45;
+	padding: 12px 14px 20px;
+	border: 1px solid var(--color-black);
+  border-radius: 2px;
+	text-align: justify;
 }
 
-@include bp.tablet-down {
-  .hero-nameplate {
-    font-size: 1.25rem;
-    margin-bottom: 8px;
-  }
-
-  .hero-description {
-    font-size: 0.98rem;
-    line-height: 1.4;
-  }
+.hero-description::before,
+.hero-description::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  pointer-events: none;
+  opacity: 0.28;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      var(--color-black) 0 1px,
+      transparent 1px 3px
+    );
 }
 
-@include bp.mobile-down {
-  .hero-nameplate {
-    font-size: 1.05rem;
-    padding: 10px 12px;
-  }
+.hero-description::before {
+  top: -1px;
+  right: -1px;
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
 
-  .hero-description {
-    font-size: 0.9rem;
-    line-height: 1.35;
-  }
+.hero-description::after {
+  bottom: -1px;
+  left: -1px;
+  clip-path: polygon(0 0, 100% 100%, 0 100%);
 }

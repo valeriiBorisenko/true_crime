@@ -6,6 +6,40 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --color-white: #fff;
+  --color-black: #000;
+  --color-surface-light: #f7f7f7;
+  --color-text-dark: #131313;
+  --color-text-light: #f9fafb;
+  --color-text-muted: #cbd5e1;
+  --color-accent-gold-soft: #edd4af;
+  --color-surface-dark-overlay: rgba(9, 12, 19, 0.86);
+
+  --color-shadow-black-16: rgba(0, 0, 0, 0.16);
+  --color-shadow-black-28: rgba(0, 0, 0, 0.28);
+  --color-shadow-black-50: rgba(0, 0, 0, 0.5);
+
+  --color-overlay-black-82: rgba(0, 0, 0, 0.82);
+  --color-overlay-black-90: rgba(0, 0, 0, 0.9);
+  --color-overlay-blue-255-22: rgba(215, 235, 255, 0.22);
+  --color-overlay-blue-255-10: rgba(215, 235, 255, 0.1);
+  --color-overlay-blue-255-00: rgba(215, 235, 255, 0);
+  --color-overlay-white-08: rgba(255, 255, 255, 0.08);
+  --color-overlay-white-00: rgba(255, 255, 255, 0);
+  --color-overlay-blue-230-04: rgba(210, 230, 255, 0.04);
+  --color-overlay-blue-230-10: rgba(210, 230, 255, 0.1);
+  --color-overlay-blue-230-03: rgba(210, 230, 255, 0.03);
+  --color-overlay-blue-240-16: rgba(225, 240, 255, 0.16);
+  --color-overlay-blue-240-08: rgba(225, 240, 255, 0.08);
+  --color-overlay-blue-235-16: rgba(210, 235, 255, 0.16);
+  --color-overlay-blue-235-14: rgba(210, 235, 255, 0.14);
+  --color-overlay-white-20: rgba(255, 255, 255, 0.2);
+  --color-overlay-white-14: rgba(255, 255, 255, 0.14);
+
+  --color-surface-slate-800: #1f2937;
+  --color-surface-slate-900: #0f172a;
+  --color-surface-slate-950: #020617;
 }
 
 *,
@@ -16,7 +50,13 @@
 
 body {
   margin: 0;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+	background:
+	linear-gradient(var(--color-overlay-black-82), var(--color-overlay-black-90)),
+	url('../../img/back.png') center center / cover fixed no-repeat;
+	color: var(--color-text-light);
 }
 
 #root {
@@ -26,7 +66,5 @@ body {
 @include bp.tablet-down {
   body {
     overflow-y: auto;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
   }
 }
