@@ -5,7 +5,7 @@ import HeroSlider from './components/HeroSlider/HeroSlider'
 import HeroInfo from './components/HeroInfo/HeroInfo'
 import GameFrame from './components/GameFrame/GameFrame'
 import QuizButton from './components/QuizButton/QuizButton'
-import faustImage from './img/heroes/faust.png'
+import faustImage from './img/heroes/faust.webp'
 
 function App() {
   const [activeSlide, setActiveSlide] = useState(0)

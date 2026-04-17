@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { EffectCreative } from 'swiper/modules'
-import faustImage from '../../img/heroes/faust.png'
+import faustImage from '../../img/heroes/faust.webp'
 import { content } from '../../data/content'
 import 'swiper/css'
 import 'swiper/css/effect-creative'

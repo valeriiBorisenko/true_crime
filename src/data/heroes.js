@@ -1,11 +1,11 @@
-import bellImage from '../img/heroes/belle.png'
-import captainImage from '../img/heroes/captain.png'
-import daphneImage from '../img/heroes/daphne.png'
-import driverImage from '../img/heroes/driver.png'
-import faustImage from '../img/heroes/faust.png'
-import frankImage from '../img/heroes/frank.png'
-import riveraImage from '../img/heroes/rivera.png'
-import simonImage from '../img/heroes/simon.png'
+import bellImage from '../img/heroes/belle.webp'
+import captainImage from '../img/heroes/captain.webp'
+import daphneImage from '../img/heroes/daphne.webp'
+import driverImage from '../img/heroes/driver.webp'
+import faustImage from '../img/heroes/faust.webp'
+import frankImage from '../img/heroes/frank.webp'
+import riveraImage from '../img/heroes/rivera.webp'
+import simonImage from '../img/heroes/simon.webp'
 
 export const heroes = [
   {
