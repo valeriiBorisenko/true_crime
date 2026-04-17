@@ -2,16 +2,12 @@ import { useState } from 'react'
 import { heroes } from './data/heroes'
 import { content } from './data/content'
 import HeroSlider from './components/HeroSlider/HeroSlider'
-import HeroInfo from './components/HeroInfo/HeroInfo'
 import GameFrame from './components/GameFrame/GameFrame'
 import QuizButton from './components/QuizButton/QuizButton'
 import faustImage from './img/heroes/faust.webp'
 
 function App() {
-  const [activeSlide, setActiveSlide] = useState(0)
-  const [isHeroInfoVisible, setIsHeroInfoVisible] = useState(false)
   const [isRateInviteVisible, setIsRateInviteVisible] = useState(false)
-  const currentHero = heroes[activeSlide]
 
   return (
     <main className="landing">
@@ -24,15 +20,10 @@ function App() {
         <aside className="left-panel">
           <HeroSlider
             heroes={heroes}
-            onSlideChange={setActiveSlide}
             onActivate={() => {
-              setIsHeroInfoVisible(true)
               setIsRateInviteVisible(true)
             }}
           />
-          <div className={`hero-info-wrap ${isHeroInfoVisible ? 'is-visible' : ''}`}>
-            <HeroInfo hero={currentHero} />
-          </div>
         </aside>
 
         <section className="game-panel">

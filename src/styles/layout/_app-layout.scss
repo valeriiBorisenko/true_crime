@@ -1,4 +1,5 @@
 :root {
+  --content-max-width: 1600px;
   --frame-inner-width: 405px;
   --frame-inner-height: 834px;
   --frame-bezel-size: 14px;
@@ -8,6 +9,9 @@
 
 .landing {
   font-family: 'TT2020E', serif;
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin-inline: auto;
   min-height: 100%;
   overflow-x: hidden;
   overflow-y: visible;
@@ -15,7 +19,7 @@
   color: var(--color-text-light);
   display: grid;
   grid-template-rows: auto 1fr;
-  gap: 12px;
+  gap: 30px;
   position: relative;
   isolation: isolate;
 }
@@ -153,7 +157,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) var(--frame-outer-width) minmax(0, 1fr);
   align-items: stretch;
-  gap: 100px;
+  gap: 50px;
   min-height: var(--frame-outer-height);
   overflow-x: hidden;
   overflow-y: visible;
@@ -173,8 +177,7 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
-  height: var(--frame-outer-height);
-  max-height: var(--frame-outer-height);
+  height: 100%;
   overflow: hidden;
   width: 100%;
   max-width: 100%;
@@ -184,11 +187,10 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
 .right-about {
-  margin-bottom: auto;
   padding: 0;
 }
 
@@ -219,6 +221,7 @@
   align-items: flex-end;
   justify-content: flex-end;
   gap: 12px;
+  overflow: visible;
   opacity: 0;
   transform: translateX(64px);
   pointer-events: none;
@@ -235,8 +238,9 @@
 
 .right-invite__hero-wrap {
   position: relative;
-  width: 200px;
-  flex: 0 0 200px;
+  width: 300px;
+  flex: 0 0 300px;
+  overflow: visible;
 }
 
 .right-invite__hero {
@@ -251,7 +255,8 @@
 .right-invite__bubble {
   position: absolute;
   top: 10px;
-  right: 88%;
+  left: 100%;
+  margin-left: 12px;
   max-width: 220px;
   padding: 10px 12px;
   background: var(--color-surface-light);
@@ -266,7 +271,7 @@
     0 2px 0 var(--color-shadow-black-16),
     0 8px 16px var(--color-shadow-black-28);
   opacity: 0;
-  transform: translateX(18px);
+  transform: translateX(-18px);
   transition:
     opacity 0.45s ease 1s,
     transform 0.45s ease 1s;
@@ -280,12 +285,12 @@
 .right-invite__bubble::after {
   content: '';
   position: absolute;
-  right: -12px;
+  left: -12px;
   top: 60%;
   width: 14px;
   height: 30px;
   background: var(--color-surface-light);
-  clip-path: polygon(0 20%, 100% 50%, 0 80%);
+  clip-path: polygon(100% 20%, 0 50%, 100% 80%);
   transform: translateY(-50%);
 }
 

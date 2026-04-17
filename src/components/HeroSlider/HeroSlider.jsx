@@ -1,24 +1,24 @@
 import { useEffect, useRef, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { EffectCreative } from 'swiper/modules'
-import faustImage from '../../img/heroes/faust.webp'
+import faustIntroImage from '../../img/faust_intro.webp'
 import { content } from '../../data/content'
+import HeroInfo from '../HeroInfo/HeroInfo'
+import HeroSliderIntro from './HeroSliderIntro'
 import 'swiper/css'
 import 'swiper/css/effect-creative'
 
-const INTRO_HERO_IMAGE = faustImage
-
 function HeroSlider({ heroes, onSlideChange, onActivate }) {
   const swiperRef = useRef(null)
-  const introSwipeStartXRef = useRef(null)
   const [isIntroVisible, setIsIntroVisible] = useState(true)
-  const [hasSwiped, setHasSwiped] = useState(false)
+  const [hasActivated, setHasActivated] = useState(false)
 
   const activateSlider = () => {
-    if (!hasSwiped) {
-      setHasSwiped(true)
-      onActivate?.()
+    if (hasActivated) {
+      return
     }
+    setHasActivated(true)
+    onActivate?.()
   }
 
   useEffect(() => {
@@ -26,11 +26,11 @@ function HeroSlider({ heroes, onSlideChange, onActivate }) {
       return
     }
 
-    swiperRef.current.allowTouchMove = hasSwiped
-  }, [hasSwiped])
+    swiperRef.current.allowTouchMove = hasActivated
+  }, [hasActivated])
 
   useEffect(() => {
-    if (!hasSwiped) {
+    if (!hasActivated) {
       return undefined
     }
 
@@ -39,69 +39,49 @@ function HeroSlider({ heroes, onSlideChange, onActivate }) {
     }, 900)
 
     return () => window.clearTimeout(hideIntroTimeout)
-  }, [hasSwiped])
+  }, [hasActivated])
 
   const handleSlideChange = (swiper) => {
-    onSlideChange(swiper.realIndex)
-  }
-
-  const handleIntroSwipeStart = (clientX) => {
-    introSwipeStartXRef.current = clientX
-  }
-
-  const handleIntroSwipeEnd = (clientX) => {
-    if (introSwipeStartXRef.current == null) {
-      return
-    }
-
-    const deltaX = introSwipeStartXRef.current - clientX
-    introSwipeStartXRef.current = null
-
-    if (Math.abs(deltaX) >= 24) {
-      activateSlider()
-    }
+    onSlideChange?.(swiper.realIndex)
   }
 
   return (
     <div className="hero-slider-wrap">
       {isIntroVisible ? (
-        <div className={`hero-slider-intro ${hasSwiped ? 'is-exiting' : ''}`}>
-          <img src={INTRO_HERO_IMAGE} alt={content.heroSlider.introHeroAlt} className="slide-image" />
-          <div className="hero-slider-bubble">{content.heroSlider.introBubble}</div>
-        </div>
-      ) : null}
-      {!hasSwiped ? (
-        <div
-          className="hero-slider-activator"
-          onTouchStart={(event) => handleIntroSwipeStart(event.touches[0].clientX)}
-          onTouchEnd={(event) => handleIntroSwipeEnd(event.changedTouches[0].clientX)}
-          onMouseDown={(event) => handleIntroSwipeStart(event.clientX)}
-          onMouseUp={(event) => handleIntroSwipeEnd(event.clientX)}
+        <HeroSliderIntro
+          image={faustIntroImage}
+          imageAlt={content.heroSlider.introHeroAlt}
+          hasActivated={hasActivated}
+          openLabel={content.heroSlider.openDossierLabel}
+          onOpenDossier={activateSlider}
         />
       ) : null}
-      <div className={`hero-slider-start ${hasSwiped ? 'is-shifted' : ''}`}>{content.heroSlider.startLabel}</div>
       <Swiper
-        className={`slider hero-swiper ${hasSwiped ? 'is-active' : ''}`}
+        className={`hero-swiper ${hasActivated ? 'is-active' : ''}`}
         modules={[EffectCreative]}
         slidesPerView={1}
         spaceBetween={0}
         loop
-        grabCursor
-        allowTouchMove={hasSwiped}
+        grabCursor={hasActivated}
+        allowTouchMove={hasActivated}
         allowSlidePrev={false}
         onSwiper={(swiper) => {
           swiperRef.current = swiper
-          swiper.allowTouchMove = hasSwiped
+          swiper.allowTouchMove = hasActivated
           swiper.allowSlidePrev = false
         }}
         onSlideChange={handleSlideChange}
       >
         {heroes.map((hero) => (
           <SwiperSlide key={hero.id}>
-            <div className="hero-slide-frame">
-              <div className="hero-slide-portrait">
-                <img src={hero.image} alt={hero.name} className="slide-image" />
+            <div className="hero-slide">
+              <div className="hero-slide__media">
+                <img src={hero.image} alt={hero.name} className="hero-slide__img" />
+                {hasActivated ? (
+                  <div className="hero-slider-start is-shifted">{content.heroSlider.startLabel}</div>
+                ) : null}
               </div>
+              <HeroInfo hero={hero} />
             </div>
           </SwiperSlide>
         ))}
