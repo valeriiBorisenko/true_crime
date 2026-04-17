@@ -14,8 +14,12 @@
   background: var(--color-accent-gold-soft);
   line-height: 1.25;
   opacity: 1;
-  transition: opacity 0.7s;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+  transition:
+    opacity 0.35s ease,
+    box-shadow 0.35s ease;
 	text-decoration: none;
+  animation: quiz-button-fade 3s ease-in-out infinite;
 }
 
 .quiz-button__title {
@@ -30,7 +34,14 @@
 }
 
 .quiz-button:hover {
-  opacity: 0.5;
+  opacity: 1;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.28);
+}
+
+.quiz-button:focus-visible {
+  outline: 2px solid var(--color-black);
+  outline-offset: 2px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.28);
 }
 
 .right-invite .quiz-button {
@@ -46,6 +57,23 @@
 .right-invite.is-visible .quiz-button {
   opacity: 1;
   transform: translateX(0);
+}
+
+@keyframes quiz-button-fade {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quiz-button {
+    animation: none;
+  }
 }
 
 @include bp.tablet-down {
