@@ -41,7 +41,13 @@ function App() {
           </section>
           <div className={`right-invite ${isRateInviteVisible ? 'is-visible' : ''}`}>
             <div className="right-invite__hero-wrap">
-              <img src={faustImage} alt={content.app.inviteHeroAlt} className="right-invite__hero" />
+              <img
+                src={faustImage}
+                alt={content.app.inviteHeroAlt}
+                className="right-invite__hero"
+                loading="lazy"
+                decoding="async"
+              />
               <div className="right-invite__bubble">{content.app.inviteBubble}</div>
             </div>
             <QuizButton />

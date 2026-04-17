@@ -72,11 +72,17 @@ function HeroSlider({ heroes, onSlideChange, onActivate }) {
         }}
         onSlideChange={handleSlideChange}
       >
-        {heroes.map((hero) => (
+        {heroes.map((hero, index) => (
           <SwiperSlide key={hero.id}>
             <div className="hero-slide">
               <div className="hero-slide__media">
-                <img src={hero.image} alt={hero.name} className="hero-slide__img" />
+                <img
+                  src={hero.image}
+                  alt={hero.name}
+                  className="hero-slide__img"
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  decoding="async"
+                />
                 {hasActivated ? (
                   <div className="hero-slider-start is-shifted">{content.heroSlider.startLabel}</div>
                 ) : null}
