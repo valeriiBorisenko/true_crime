@@ -64,11 +64,9 @@ function HeroSlider({ heroes, onSlideChange, onActivate }) {
         loop
         grabCursor={hasActivated}
         allowTouchMove={hasActivated}
-        allowSlidePrev={false}
         onSwiper={(swiper) => {
           swiperRef.current = swiper
           swiper.allowTouchMove = hasActivated
-          swiper.allowSlidePrev = false
         }}
         onSlideChange={handleSlideChange}
       >

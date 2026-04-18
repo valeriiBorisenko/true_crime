@@ -10,7 +10,16 @@ function App() {
   const [isRateInviteVisible, setIsRateInviteVisible] = useState(false)
 
   return (
-    <main className="landing">
+    <>
+      <div className="mobile-placeholder" role="status">
+        <div className="mobile-placeholder__inner">
+          <p className="mobile-placeholder__label">{content.app.title}</p>
+          <h1 className="mobile-placeholder__title">{content.mobilePlaceholder.title}</h1>
+          <p className="mobile-placeholder__text">{content.mobilePlaceholder.description}</p>
+        </div>
+      </div>
+
+      <main className="landing">
       <header className="topbar">
         <h1>{content.app.title}</h1>
         <p className="subtitle">{content.app.subtitle}</p>
@@ -55,6 +64,7 @@ function App() {
         </aside>
       </section>
     </main>
+    </>
   )
 }
 
