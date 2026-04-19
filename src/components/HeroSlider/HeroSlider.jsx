@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { EffectCreative } from 'swiper/modules'
+import { EffectCreative, Autoplay } from 'swiper/modules'
 import faustIntroImage from '../../img/faust_intro.webp'
 import { content } from '../../data/content'
 import HeroInfo from '../HeroInfo/HeroInfo'
@@ -58,7 +58,11 @@ function HeroSlider({ heroes, onSlideChange, onActivate }) {
       ) : null}
       <Swiper
         className={`hero-swiper ${hasActivated ? 'is-active' : ''}`}
-        modules={[EffectCreative]}
+        modules={[EffectCreative, Autoplay]}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
         slidesPerView={1}
         spaceBetween={0}
         loop
