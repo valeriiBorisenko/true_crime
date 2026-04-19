@@ -30,6 +30,14 @@ function HeroSlider({ heroes, onSlideChange, onActivate }) {
   }, [hasActivated])
 
   useEffect(() => {
+    if (!hasActivated || !swiperRef.current?.autoplay) {
+      return
+    }
+
+    swiperRef.current.autoplay.start()
+  }, [hasActivated])
+
+  useEffect(() => {
     if (!hasActivated) {
       return undefined
     }
@@ -62,6 +70,7 @@ function HeroSlider({ heroes, onSlideChange, onActivate }) {
         autoplay={{
           delay: 5000,
           disableOnInteraction: false,
+          enabled: hasActivated,
         }}
         slidesPerView={1}
         spaceBetween={0}
