@@ -3,8 +3,8 @@ function HeroInfo({ hero }) {
 
   return (
     <div className="hero-info">
-      <h2 className="hero-nameplate">{hero.name}</h2>
-      <p className="hero-description">{hero.bio}</p>
+      <h2 className="hero-info__title">{hero.name}</h2>
+      <p className="hero-info__text">{hero.bio}</p>
     </div>
   )
 }

@@ -1,16 +1,17 @@
 import { content } from '../../data/content'
 
 function QuizButton() {
+  const { href, lead, subline, openLabel } = content.quizButton
+
   return (
-    <a
-      className="quiz-button"
-      href={content.quizButton.href}
-      target="_blank"
-      rel="noreferrer"
-    >
-      <span className="quiz-button__title">{content.quizButton.title}</span>
-      <span className="quiz-button__subtitle">{content.quizButton.subtitle}</span>
-    </a>
+    <div className="quiz-cta">
+      <p className="quiz-cta__text">
+        <strong className="quiz-cta__lead">{lead}</strong>, {subline}
+      </p>
+      <a className="quiz-cta__open" href={href} target="_blank" rel="noreferrer">
+        {openLabel}
+      </a>
+    </div>
   )
 }
 
