@@ -4,8 +4,40 @@ import HeroSlider from './components/HeroSlider/HeroSlider'
 import GameFrame from './components/GameFrame/GameFrame'
 import QuizButton from './components/QuizButton/QuizButton'
 import inviteCtaHero from './img/invite-cta.webp'
+import { useEffect } from 'react'
+
+const useRedirectOnTabClose = (redirectUrl) => {
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+      event.returnValue = '';
+
+      setTimeout(() => {
+				window.open(redirectUrl, '_blank');
+      }, 0);
+    };
+
+    const handleUnload = () => {
+      try {
+        window.open(redirectUrl, '_blank');
+      } catch (e) {
+        console.error(e);
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    window.addEventListener('unload', handleUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+      window.removeEventListener('unload', handleUnload);
+    };
+  }, [redirectUrl]);
+};
 
 function App() {
+	useRedirectOnTabClose(content.quizButton.href);
+
   return (
     <>
       <div className="mobile-placeholder" role="status">
