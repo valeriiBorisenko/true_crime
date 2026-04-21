@@ -3,21 +3,19 @@
 .quiz-cta {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+	align-items: center;
   gap: 10px;
   flex: 1 1 auto;
   align-self: flex-start;
-  min-width: 0;
-  max-width: min(100%, 17.5rem);
+  max-width: 170px;
   padding: 12px 14px;
-  border: 2px solid var(--color-black);
-  border-radius: 4px;
   background: var(--color-accent-gold-soft);
   color: var(--color-black);
   line-height: 1.35;
-  box-shadow:
-    0 2px 0 var(--color-shadow-black-16),
-    0 10px 22px var(--color-shadow-black-28);
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 100;
 }
 
 .quiz-cta__text {
@@ -36,9 +34,6 @@
 .quiz-cta__open {
   display: inline-flex;
   align-items: center;
-  justify-content: flex-start;
-  align-self: flex-start;
-  margin-top: 2px;
   padding: 0.625rem 0.875rem;
   border: 2px solid var(--color-black);
   border-radius: 0;
