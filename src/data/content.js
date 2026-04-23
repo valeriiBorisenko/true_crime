@@ -26,6 +26,6 @@ export const content = {
   },
   gameFrame: {
     title: 'True Crime Unity Game',
-    src: 'https://truecrime-testing.netlify.app/',
+    src: 'https://truecrime-stable.netlify.app/',
   },
 }
