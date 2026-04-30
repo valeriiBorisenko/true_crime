@@ -14,7 +14,7 @@
   color: var(--color-text-light);
   position: relative;
   isolation: isolate;
-	padding-top: 30px;
+	padding: 30px 30px 0;
 }
 
 .landing::before,
@@ -152,7 +152,7 @@
 
 .layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto 1fr;
   grid-template-areas:
     'topbar game right'
@@ -202,6 +202,7 @@
   gap: 50px;
   justify-content: space-between;
   overflow: hidden;
+	flex: 1;
 }
 
 .right-about__title {
@@ -232,6 +233,7 @@
   align-items: flex-end;
   justify-content: flex-end;
 	position: relative;
+	height: 100%;
 }
 
 .right-invite__hero-wrap {
@@ -239,6 +241,7 @@
   width: 100%;
   height: 100%;
 	bottom: -30px;
+	pointer-events: none;
 }
 
 .right-invite__hero {
@@ -248,29 +251,26 @@
   object-fit: contain;
   object-position: bottom right;
   filter: drop-shadow(0 12px 20px var(--color-shadow-black-50));
+	pointer-events: none;
 }
 
 .game-panel {
   display: flex;
   justify-content: center;
   align-items: center;
-  align-self: start;
-  width: auto;
-  min-width: 0;
+  width: 100%;
   height: 100%;
-  min-height: 0;
-  max-height: 100%;
+	max-height: 100vh;
   overflow: hidden;
   margin: auto;
 	padding-bottom: 30px;
 }
 
 .game-frame {
-  width: auto;
-  height: 100%;
+	width: calc((100vh - 60px) * var(--game-frame-aspect-ratio));
   aspect-ratio: var(--game-frame-aspect-ratio);
-  max-width: 100%;
-  max-height: 100%;
+	max-height: calc(100vh - 60px);
+	height: max-content;
   padding: var(--frame-bezel-size);
   overflow: hidden;
   border-radius: 38px;

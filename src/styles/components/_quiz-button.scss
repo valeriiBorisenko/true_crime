@@ -9,15 +9,13 @@
   align-self: flex-start;
   max-width: 170px;
   padding: 12px 14px;
-	margin: 10px;
-  background: var(--color-green);
+  background: var(--color-orange);
   color: var(--color-black);
 	border: 2px solid var(--color-black);
   line-height: 1.35;
 	position: absolute;
 	top: 0;
 	left: 0;
-	z-index: 100;
 }
 
 .quiz-cta__text {
@@ -53,10 +51,12 @@
     background-color 0.2s ease,
     box-shadow 0.25s ease,
     transform 0.2s ease;
+	background: color-mix(in srgb, var(--color-black) 16%, transparent);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.16);
 }
 
 .quiz-cta__open:hover {
-  background: color-mix(in srgb, var(--color-black) 8%, transparent);
+  background: var(--color-accent-gold-soft);
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.16);
   transform: translateY(-1px);
 }

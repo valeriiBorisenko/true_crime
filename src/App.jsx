@@ -1,42 +1,67 @@
+import { useEffect, useRef } from 'react'
 import { heroes } from './data/heroes'
 import { content } from './data/content'
 import HeroSlider from './components/HeroSlider/HeroSlider'
 import GameFrame from './components/GameFrame/GameFrame'
 import QuizButton from './components/QuizButton/QuizButton'
 import inviteCtaHero from './img/invite-cta.webp'
-import { useEffect } from 'react'
 
-const useRedirectOnTabClose = (redirectUrl) => {
+function App() {
+	const surveyUrl = content.quizButton.href;
+  const hasOpenedRef = useRef(false);
+  const mouseLeaveTimeout = useRef(null);
+
+  const openSurvey = () => {
+    if (hasOpenedRef.current) return;
+
+    hasOpenedRef.current = true;
+
+    const popup = window.open(
+      surveyUrl,
+      'surveyWindow',
+      'width=850,height=740,scrollbars=yes,resizable=yes,top=100,left=180'
+    );
+
+    if (!popup || popup.closed || typeof popup.closed === 'undefined') {
+      window.open(surveyUrl, '_blank');
+    }
+  };
+
   useEffect(() => {
-    const handleBeforeUnload = (event) => {
-      event.preventDefault();
-      event.returnValue = '';
-
-      setTimeout(() => {
-				window.open(redirectUrl, '_blank');
-      }, 0);
-    };
-
-    const handleUnload = () => {
-      try {
-        window.open(redirectUrl, '_blank');
-      } catch (e) {
-        console.error(e);
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'hidden') {
+        mouseLeaveTimeout.current = setTimeout(openSurvey, 600);
+      } else {
+        clearTimeout(mouseLeaveTimeout.current);
       }
     };
 
-    window.addEventListener('beforeunload', handleBeforeUnload);
-    window.addEventListener('unload', handleUnload);
+    const handlePageHide = (event) => {
+      if (!event.persisted) {
+        openSurvey();
+      }
+    };
+
+    const handleMouseLeave = (e) => {
+      if (e.clientY <= 0 || e.clientX <= 0 || e.clientX >= window.innerWidth) {
+        mouseLeaveTimeout.current = setTimeout(openSurvey, 500);
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('pagehide', handlePageHide);
+    document.addEventListener('mouseleave', handleMouseLeave);
 
     return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-      window.removeEventListener('unload', handleUnload);
-    };
-  }, [redirectUrl]);
-};
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('pagehide', handlePageHide);
+      document.removeEventListener('mouseleave', handleMouseLeave);
 
-function App() {
-	useRedirectOnTabClose(content.quizButton.href);
+      if (mouseLeaveTimeout.current) {
+        clearTimeout(mouseLeaveTimeout.current);
+      }
+    };
+  }, []);
 
   return (
     <>
