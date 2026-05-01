@@ -1,0 +1,292 @@
+:root {
+  --content-max-width: 1600px;
+  --game-frame-aspect-ratio: 9 / 16;
+  --frame-bezel-size: 14px;
+}
+
+.landing {
+  font-family: 'TT2020E', serif;
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin-inline: auto;
+  height: 100vh;
+  overflow: hidden;
+  color: var(--color-text-light);
+  position: relative;
+  isolation: isolate;
+	padding: 30px 30px 0;
+}
+
+.landing::before,
+.landing::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  z-index: -1;
+}
+
+.landing::before {
+  background:
+    linear-gradient(to left, rgba(215, 235, 255, 0.22) 0%, rgba(215, 235, 255, 0.1) 8%, rgba(215, 235, 255, 0) 34%),
+    linear-gradient(to left, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 18%),
+    linear-gradient(to bottom, rgba(210, 230, 255, 0.04) 0%, rgba(210, 230, 255, 0.1) 52%, rgba(210, 230, 255, 0.03) 100%);
+  opacity: 0;
+  filter: blur(0.2px);
+  animation: thunder-flash 13s infinite;
+}
+
+.landing::after {
+  background:
+    linear-gradient(
+      to left,
+      rgba(225, 240, 255, 0.16) 0%,
+      rgba(225, 240, 255, 0.08) 6%,
+      transparent 22%,
+      transparent 100%
+    ),
+    linear-gradient(
+      175deg,
+      transparent 0%,
+      transparent 68%,
+      rgba(210, 235, 255, 0.16) 78%,
+      transparent 88%,
+      transparent 100%
+    ),
+    linear-gradient(
+      8deg,
+      transparent 0%,
+      transparent 58%,
+      rgba(210, 235, 255, 0.14) 76%,
+      transparent 92%
+    );
+  opacity: 0;
+  transform: translateX(2px);
+  filter: blur(0.4px);
+  animation: thunder-streaks 17s infinite;
+}
+
+@keyframes thunder-flash {
+  0%,
+  62% {
+    opacity: 0;
+  }
+
+  64% {
+    opacity: 0.4;
+  }
+  65% {
+    opacity: 0.08;
+  }
+  66% {
+    opacity: 0.58;
+  }
+  66.8% {
+    opacity: 0.18;
+  }
+  67.5% {
+    opacity: 0.46;
+  }
+  68.3% {
+    opacity: 0.04;
+  }
+
+  71% {
+    opacity: 0.08;
+  }
+  74%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes thunder-streaks {
+  0%,
+  70% {
+    opacity: 0;
+  }
+  72% {
+    opacity: 0.32;
+  }
+  72.6% {
+    opacity: 0.06;
+  }
+  73.2% {
+    opacity: 0.26;
+  }
+  74% {
+    opacity: 0.03;
+  }
+  76% {
+    opacity: 0.1;
+  }
+  79%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.topbar {
+  grid-area: topbar;
+  text-align: left;
+  align-self: start;
+  margin: 0;
+}
+
+.topbar h1 {
+  font-family: 'SongerBold', serif;
+  margin: 0;
+  font-size: clamp(1.65rem, 3.2vw, 2.85rem);
+  letter-spacing: 0.12em;
+  line-height: 1.15;
+}
+
+.subtitle {
+  margin: 8px 0 0;
+  max-width: 36rem;
+  color: var(--color-text-muted);
+  font-size: clamp(0.85rem, 1.35vw, 1rem);
+  line-height: 1.35;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    'topbar game right'
+    'left game right';
+  align-items: center;
+  gap: 20px 40px;
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.left-panel {
+  grid-area: left;
+}
+
+.game-panel {
+  grid-area: game;
+}
+
+.right-panel {
+  grid-area: right;
+}
+
+.layout > * {
+  min-width: 0;
+  min-height: 0;
+}
+
+.left-panel,
+.right-panel {
+  height: 100%;
+}
+
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+	padding-bottom: 30px;
+}
+
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  justify-content: space-between;
+  overflow: hidden;
+	flex: 1;
+}
+
+.right-about__title {
+  margin: 0 0 10px;
+  font-family: 'SongerBold', serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent-gold-soft);
+}
+
+.right-about__text {
+  margin: 0;
+  padding: 12px 14px;
+  background: var(--color-accent-gold-soft);
+  color: var(--color-black);
+  font-size: 0.93rem;
+  line-height: 1.4;
+}
+
+.right-about__text + .right-about__text {
+  margin-top: 2px;
+}
+
+.right-invite {
+  display: flex;
+	flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+	position: relative;
+	height: 100%;
+}
+
+.right-invite__hero-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+	bottom: -30px;
+	pointer-events: none;
+}
+
+.right-invite__hero {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  object-position: bottom right;
+  filter: drop-shadow(0 12px 20px var(--color-shadow-black-50));
+	pointer-events: none;
+}
+
+.game-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+	max-height: 100vh;
+  overflow: hidden;
+  margin: auto;
+	padding-bottom: 30px;
+}
+
+.game-frame {
+	width: calc((100vh - 60px) * var(--game-frame-aspect-ratio));
+  aspect-ratio: var(--game-frame-aspect-ratio);
+	max-height: calc(100vh - 60px);
+	height: max-content;
+  padding: var(--frame-bezel-size);
+  overflow: hidden;
+  border-radius: 38px;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 16%),
+    linear-gradient(270deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 16%),
+    linear-gradient(180deg, #1f2937 0%, #0f172a 48%, #020617 100%);
+  box-shadow:
+    0 18px 34px var(--color-shadow-black-50),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+}
+
+.game-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 24px;
+  background: var(--color-black);
+}

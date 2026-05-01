@@ -1,0 +1,23 @@
+.hero-info {
+  flex: 0 0 auto;
+  width: 100%;
+  min-width: 0;
+}
+
+.hero-info__title {
+  margin: 0 0 10px;
+  font-family: 'SongerBold', serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent-gold-soft);
+}
+
+.hero-info__text {
+  margin: 0;
+  padding: 12px 14px;
+  background: var(--color-accent-gold-soft);
+  color: var(--color-black);
+  font-size: 0.93rem;
+  line-height: 1.4;
+}
