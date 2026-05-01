@@ -68,7 +68,7 @@ function HeroSlider({ heroes, onSlideChange, onActivate }) {
         className={`hero-swiper ${hasActivated ? 'is-active' : ''}`}
         modules={[EffectCreative, Autoplay]}
         autoplay={{
-          delay: 5000,
+          delay: 20000,
           disableOnInteraction: false,
           enabled: hasActivated,
         }}
