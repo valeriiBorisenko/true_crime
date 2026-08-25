@@ -1,3 +1,8 @@
+import mainImg from '../img/main.png'; 
+import googlePlayIcon from '../img/socials/googleplay.svg';
+import appleStoreIcon from '../img/socials/applestore.svg';
+import telegramIcon from '../img/socials/telegram.svg';
+
 export const content = {
   mobilePlaceholder: {
     title: 'Нужен экран побольше',
@@ -29,21 +34,21 @@ export const content = {
     src: 'https://truecrime-stable.netlify.app/',
   },
   gameFrameImage: {
-    src: 'src/img/main.png',
+    src: mainImg,
     alt: 'Приглашение',
     socials: {
       googleplay: {
-        icon: 'src/img/socials/googleplay.svg',
+        icon: googlePlayIcon,
         alt: 'Google Play',
         href: 'https://play.google.com/store/apps/details?id=com.VivexCompany.TrueCrime',
       },
       applestore: {
-        icon: 'src/img/socials/applestore.svg',
+        icon: appleStoreIcon,
         alt: 'Apple Store',
         href: 'https://apps.apple.com/by/app/%D0%BF%D0%BE%D1%82%D1%80%D0%BE%D1%88%D0%B8%D1%82%D0%B5%D0%BB%D1%8C-%D0%B1%D1%80%D0%BE%D0%B4%D0%B2%D0%B5%D1%8F-%D0%B4%D0%B5%D1%82%D0%B5%D0%BA%D1%82%D0%B8%D0%B2/id6780802343',
       },
       telegram: {
-        icon: 'src/img/socials/telegram.svg',
+        icon: telegramIcon,
         alt: 'Telegram',
         href: 'https://t.me/truecrimebp',
       },
