@@ -2,7 +2,8 @@ import { useEffect, useRef } from 'react'
 import { heroes } from './data/heroes'
 import { content } from './data/content'
 import HeroSlider from './components/HeroSlider/HeroSlider'
-import GameFrame from './components/GameFrame/GameFrame'
+//import GameFrame from './components/GameFrame/GameFrame'
+import GameFrameImage from './components/GameFrame/GameFrameImage'
 import QuizButton from './components/QuizButton/QuizButton'
 import inviteCtaHero from './img/invite-cta.webp'
 
@@ -85,7 +86,7 @@ function App() {
           </aside>
 
           <section className="game-panel">
-            <GameFrame />
+            <GameFrameImage />
           </section>
 
           <aside className="right-panel">
