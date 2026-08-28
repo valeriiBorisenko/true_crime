@@ -1,67 +1,11 @@
-import { useEffect, useRef } from 'react'
 import { heroes } from './data/heroes'
 import { content } from './data/content'
 import HeroSlider from './components/HeroSlider/HeroSlider'
 import GameFrame from './components/GameFrame/GameFrame'
-import QuizButton from './components/QuizButton/QuizButton'
-import inviteCtaHero from './img/invite-cta.webp'
+import StoreBadges from './components/StoreBadges/StoreBadges'
 
 function App() {
-	const surveyUrl = content.quizButton.href;
-  const hasOpenedRef = useRef(false);
-  const mouseLeaveTimeout = useRef(null);
 
-  const openSurvey = () => {
-    if (hasOpenedRef.current) return;
-
-    hasOpenedRef.current = true;
-
-    const popup = window.open(
-      surveyUrl,
-      'surveyWindow',
-      'width=850,height=740,scrollbars=yes,resizable=yes,top=100,left=180'
-    );
-
-    if (!popup || popup.closed || typeof popup.closed === 'undefined') {
-      window.open(surveyUrl, '_blank');
-    }
-  };
-
-  useEffect(() => {
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === 'hidden') {
-        mouseLeaveTimeout.current = setTimeout(openSurvey, 600);
-      } else {
-        clearTimeout(mouseLeaveTimeout.current);
-      }
-    };
-
-    const handlePageHide = (event) => {
-      if (!event.persisted) {
-        openSurvey();
-      }
-    };
-
-    const handleMouseLeave = (e) => {
-      if (e.clientY <= 0 || e.clientX <= 0 || e.clientX >= window.innerWidth) {
-        mouseLeaveTimeout.current = setTimeout(openSurvey, 500);
-      }
-    };
-
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-    window.addEventListener('pagehide', handlePageHide);
-    document.addEventListener('mouseleave', handleMouseLeave);
-
-    return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-      window.removeEventListener('pagehide', handlePageHide);
-      document.removeEventListener('mouseleave', handleMouseLeave);
-
-      if (mouseLeaveTimeout.current) {
-        clearTimeout(mouseLeaveTimeout.current);
-      }
-    };
-  }, []);
 
   return (
     <>
@@ -97,18 +41,7 @@ function App() {
                 </p>
               ))}
             </section>
-            <div className="right-invite">
-              <QuizButton />
-							<div className="right-invite__hero-wrap">
-                <img
-                  src={inviteCtaHero}
-                  alt={content.app.inviteHeroAlt}
-                  className="right-invite__hero"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            </div>
+            <StoreBadges />
           </aside>
         </section>
       </main>

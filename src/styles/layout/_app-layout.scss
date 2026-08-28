@@ -1,7 +1,7 @@
 :root {
   --content-max-width: 1600px;
   --game-frame-aspect-ratio: 9 / 16;
-  --frame-bezel-size: 14px;
+  --frame-bezel-size: 4px;
 }
 
 .landing {
@@ -199,10 +199,16 @@
 .right-panel {
   display: flex;
   flex-direction: column;
-  gap: 50px;
-  justify-content: space-between;
+  justify-content: flex-start;
   overflow: hidden;
-	flex: 1;
+  flex: 1;
+  align-self: stretch;
+  position: relative;
+}
+
+.right-about {
+  position: relative;
+  z-index: 1;
 }
 
 .right-about__title {
@@ -227,33 +233,6 @@
   margin-top: 2px;
 }
 
-.right-invite {
-  display: flex;
-	flex-direction: column;
-  align-items: flex-end;
-  justify-content: flex-end;
-	position: relative;
-	height: 100%;
-}
-
-.right-invite__hero-wrap {
-  position: relative;
-  width: 100%;
-  height: 100%;
-	bottom: -30px;
-	pointer-events: none;
-}
-
-.right-invite__hero {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: contain;
-  object-position: bottom right;
-  filter: drop-shadow(0 12px 20px var(--color-shadow-black-50));
-	pointer-events: none;
-}
-
 .game-panel {
   display: flex;
   justify-content: center;
@@ -266,27 +245,114 @@
 	padding-bottom: 30px;
 }
 
+.game-frame__sound-unlock {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  cursor: pointer;
+}
+
 .game-frame {
 	width: calc((100vh - 60px) * var(--game-frame-aspect-ratio));
   aspect-ratio: var(--game-frame-aspect-ratio);
 	max-height: calc(100vh - 60px);
 	height: max-content;
+  display: flex;
+  position: relative;
   padding: var(--frame-bezel-size);
   overflow: hidden;
-  border-radius: 38px;
-  background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 16%),
-    linear-gradient(270deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 16%),
-    linear-gradient(180deg, #1f2937 0%, #0f172a 48%, #020617 100%);
+  border-radius: 18px;
+  background: #000;
   box-shadow:
-    0 18px 34px var(--color-shadow-black-50),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+    0 0 0 1px color-mix(in srgb, var(--color-accent-gold-soft) 28%, transparent),
+    0 0 22px color-mix(in srgb, var(--color-accent-gold-soft) 22%, transparent),
+    0 16px 36px rgba(0, 0, 0, 0.55);
 }
 
-.game-frame iframe {
+.game-frame__stage {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
   width: 100%;
   height: 100%;
+  overflow: hidden;
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+.game-frame__video {
+  width: 100%;
+  height: 100%;
+  display: block;
   border: 0;
-  border-radius: 24px;
   background: var(--color-black);
+  object-fit: cover;
+}
+
+.game-frame__controls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 2.2rem 0.7rem 0.7rem;
+  background: linear-gradient(180deg, transparent 0%, rgba(11, 14, 17, 0.82) 72%);
+}
+
+.game-frame__play {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  padding: 0;
+  border: 1px solid color-mix(in srgb, var(--color-accent-gold-soft) 55%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-black) 55%, transparent);
+  color: var(--color-accent-gold-soft);
+  cursor: pointer;
+}
+
+.game-frame__play svg {
+  width: 0.95rem;
+  height: 0.95rem;
+  fill: currentColor;
+}
+
+.game-frame__play:hover {
+  background: color-mix(in srgb, var(--color-black) 30%, var(--color-accent-gold-soft) 12%);
+}
+
+.game-frame__play:focus-visible {
+  outline: 2px solid var(--color-accent-gold-soft);
+  outline-offset: 2px;
+}
+
+.game-frame__volume {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex: 0 0 auto;
+  color: var(--color-accent-gold-soft);
+}
+
+.game-frame__volume-icon {
+  flex: 0 0 auto;
+  width: 1.05rem;
+  height: 1.05rem;
+  fill: currentColor;
+}
+
+.game-frame__volume-slider {
+  width: 5.2rem;
+  height: 0.28rem;
+  margin: 0;
+  accent-color: var(--color-accent-gold-soft);
+  cursor: pointer;
 }
