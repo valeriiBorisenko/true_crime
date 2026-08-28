@@ -7,45 +7,6 @@
   cursor: default;
 }
 
-.hero-slider-wrap > .hero-slider-intro {
-  grid-area: 1 / 1;
-  z-index: 8;
-  align-self: stretch;
-  justify-self: stretch;
-  min-width: 0;
-  min-height: 0;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: stretch;
-  border-radius: 1rem;
-  overflow: hidden;
-  pointer-events: none;
-  opacity: 0;
-  transform: translateY(1.5rem) scale(0.98);
-  transition:
-    opacity 0.9s ease,
-    transform 0.9s ease;
-  animation: intro-hero-appear 0.9s ease 1s forwards;
-}
-
-.hero-slider-intro__stack {
-  position: relative;
-  display: grid;
-  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
-  flex: 1;
-  min-height: 0;
-  min-width: 0;
-  width: 100%;
-}
-
-.hero-slider-intro.is-exiting {
-  animation: intro-hero-exit 0.9s ease forwards;
-  pointer-events: auto;
-  cursor: default;
-}
-
 .hero-slide__img {
   flex: 1 1 0;
   width: 100%;
@@ -61,19 +22,6 @@
       0 0.35rem 1rem color-mix(in srgb, var(--color-accent-gold-soft) 50%, transparent)
     )
     drop-shadow(0 0.15rem 0.45rem color-mix(in srgb, var(--color-accent-gold-soft) 35%, transparent));
-}
-
-.hero-slider-intro__image {
-  grid-area: 1 / 1;
-  width: 100%;
-  height: 100%;
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  object-position: center;
-  display: block;
-  -webkit-user-drag: none;
-  cursor: default;
 }
 
 .hero-slider-start {
@@ -94,32 +42,6 @@
   transition:
     opacity 0.55s ease,
     transform 0.9s ease;
-}
-
-.hero-slider-intro .hero-slider-start.is-intro {
-  grid-area: 1 / 1;
-  z-index: 10;
-  align-self: flex-start;
-  justify-self: flex-end;
-  pointer-events: auto;
-  padding: 0.5rem 0.625rem;
-  letter-spacing: 0.02em;
-  margin-right: 10px;
-}
-
-.hero-slider-start.is-intro {
-  margin: 0;
-  appearance: none;
-  cursor: pointer;
-  opacity: 0;
-  animation:
-    intro-open-fade 0.55s ease 2s forwards,
-    intro-open-pulse 2.2s ease-in-out 2.6s infinite;
-}
-
-.hero-slider-start.is-intro:focus-visible {
-  outline: 2px solid var(--color-accent-gold-soft);
-  outline-offset: 3px;
 }
 
 .hero-slider-start.is-shifted {
@@ -155,19 +77,13 @@
   border-radius: 1rem;
   overflow: visible;
   background: transparent;
-  opacity: 0;
-  transition: opacity 0.55s ease 0.35s;
-  pointer-events: none;
-}
-
-.hero-swiper.is-active {
   opacity: 1;
   pointer-events: auto;
   cursor: grab;
 }
 
-.hero-swiper.is-active .hero-slide__img,
-.hero-swiper.is-active .hero-slider-start.is-shifted {
+.hero-swiper .hero-slide__img,
+.hero-swiper .hero-slider-start.is-shifted {
   cursor: grab;
 }
 
@@ -185,51 +101,6 @@
   }
 }
 
-@keyframes intro-hero-appear {
-  0% {
-    opacity: 0;
-    transform: translateY(1.5rem) scale(0.98);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes intro-hero-exit {
-  0% {
-    opacity: 1;
-    transform: translateY(0) translateX(0) scale(1);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translateY(0) translateX(-50%) scale(1);
-  }
-}
-
-@keyframes intro-open-fade {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes intro-open-pulse {
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 transparent;
-  }
-
-  50% {
-    box-shadow: 0 0 1.125rem 0 var(--color-accent-gold-soft);
-  }
-}
-
 .hero-swiper .swiper-wrapper,
 .hero-swiper .swiper-slide {
   height: 100%;
@@ -242,22 +113,17 @@
   justify-content: flex-start;
   background: transparent;
   border-radius: 0.875rem;
-  opacity: 0;
-  transition: opacity 0.45s ease 0.25s;
+  opacity: 1;
   z-index: 1;
   transform-origin: left center;
   backface-visibility: hidden;
 }
 
-.hero-swiper.is-active .swiper-slide {
-  opacity: 1;
-}
-
-.hero-swiper.is-active .swiper-slide-active {
+.hero-swiper .swiper-slide-active {
   z-index: 3;
 }
 
-.hero-swiper.is-active .swiper-slide-next {
+.hero-swiper .swiper-slide-next {
   opacity: 0.2;
   z-index: 2;
 }
@@ -274,8 +140,7 @@
   box-sizing: border-box;
   padding-inline: clamp(0.5rem, 4vw, 1.25rem);
   gap: clamp(0.75rem, 2.5vw, 1.25rem);
-  opacity: 0;
-  transition: opacity 0.45s ease;
+  opacity: 1;
 }
 
 .hero-slide__media {
@@ -291,8 +156,4 @@
 .hero-slide__media .hero-slider-start.is-shifted {
   align-self: flex-end;
   flex-shrink: 0;
-}
-
-.hero-swiper.is-active .hero-slide {
-  opacity: 1;
 }
