@@ -1,6 +1,9 @@
+@use '../base/breakpoints' as bp;
+
 .hero-info {
   flex: 0 0 auto;
   width: 100%;
+  max-width: 100%;
   min-width: 0;
 }
 
@@ -11,6 +14,7 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-accent-gold-soft);
+  overflow-wrap: break-word;
 }
 
 .hero-info__text {
@@ -20,4 +24,20 @@
   color: var(--color-black);
   font-size: 0.93rem;
   line-height: 1.4;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@include bp.mobile-down {
+  .hero-info__title {
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-info__text {
+    padding: 10px 12px;
+    font-size: 0.84rem;
+  }
 }

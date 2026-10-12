@@ -1,10 +1,16 @@
+@use '../base/breakpoints' as bp;
+
 .hero-slider-wrap {
   flex: 1;
   display: grid;
   grid-template: 1fr / 1fr;
   min-height: 0;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
   height: 100%;
   cursor: default;
+  overflow: hidden;
 }
 
 .hero-slide__img {
@@ -72,10 +78,11 @@
   min-width: 0;
   min-height: 0;
   width: 100%;
+  max-width: 100%;
   position: relative;
   user-select: none;
   border-radius: 1rem;
-  overflow: visible;
+  overflow: hidden;
   background: transparent;
   opacity: 1;
   pointer-events: auto;
@@ -89,15 +96,15 @@
 
 @keyframes intro-text-slide {
   0% {
-    transform: translateX(0.625rem);
+    transform: translateX(0);
   }
 
   65% {
-    transform: translateX(-0.375rem);
+    transform: translateX(-0.5rem);
   }
 
   100% {
-    transform: translateX(-0.625rem);
+    transform: translateX(-0.75rem);
   }
 }
 
@@ -132,8 +139,9 @@
   display: flex;
   flex-direction: column;
   min-height: 0;
+  min-width: 0;
   flex: 1;
-  width: min(100%, 42rem);
+  width: 100%;
   max-width: 100%;
   height: 100%;
   margin-inline: auto;
@@ -141,19 +149,77 @@
   padding-inline: clamp(0.5rem, 4vw, 1.25rem);
   gap: clamp(0.75rem, 2.5vw, 1.25rem);
   opacity: 1;
+  overflow: hidden;
 }
 
 .hero-slide__media {
   flex: 1 1 0;
   min-height: 0;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: stretch;
   gap: 10px;
+  overflow: hidden;
+  padding-inline-start: 2.75rem;
 }
 
 .hero-slide__media .hero-slider-start.is-shifted {
   align-self: flex-end;
   flex-shrink: 0;
+  max-width: calc(100% - 0.25rem);
+}
+
+@include bp.mobile-down {
+  .hero-slider-wrap {
+    flex: none;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+  }
+
+  .hero-slider-wrap > .hero-swiper {
+    height: auto;
+  }
+
+  .hero-swiper .swiper-wrapper,
+  .hero-swiper .swiper-slide {
+    height: auto;
+  }
+
+  .hero-slide {
+    padding-inline: 0;
+    gap: 0.75rem;
+    height: auto;
+    overflow: visible;
+  }
+
+  .hero-slide__media {
+    flex: none;
+    height: min(62dvh, 28rem);
+    padding-inline-start: 2.1rem;
+  }
+
+  .hero-slide__img {
+    flex: 1 1 auto;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .hero-slider-start {
+    font-size: 0.72rem;
+    padding: 0.45rem 0.65rem;
+    max-width: 100%;
+  }
+
+  .hero-slider-start.is-shifted::after {
+    inset-inline-start: -2rem;
+    width: 1.35rem;
+    height: 1.35rem;
+  }
 }

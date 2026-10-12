@@ -1,3 +1,5 @@
+@use '../base/breakpoints' as bp;
+
 :root {
   --content-max-width: 1600px;
   --game-frame-aspect-ratio: 9 / 16;
@@ -7,14 +9,16 @@
 .landing {
   font-family: 'TT2020E', serif;
   width: 100%;
-  max-width: var(--content-max-width);
+  max-width: min(var(--content-max-width), 100%);
   margin-inline: auto;
   height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   color: var(--color-text-light);
   position: relative;
   isolation: isolate;
-	padding: 30px 30px 0;
+  padding: 30px 30px 0;
+  box-sizing: border-box;
 }
 
 .landing::before,
@@ -140,6 +144,9 @@
   font-size: clamp(1.65rem, 3.2vw, 2.85rem);
   letter-spacing: 0.12em;
   line-height: 1.15;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
 }
 
 .subtitle {
@@ -148,6 +155,7 @@
   color: var(--color-text-muted);
   font-size: clamp(0.85rem, 1.35vw, 1rem);
   line-height: 1.35;
+  overflow-wrap: break-word;
 }
 
 .layout {
@@ -227,6 +235,8 @@
   color: var(--color-black);
   font-size: 0.93rem;
   line-height: 1.4;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
 
 .right-about__text + .right-about__text {
@@ -239,10 +249,11 @@
   align-items: center;
   width: 100%;
   height: 100%;
-	max-height: 100vh;
+  max-height: 100%;
   overflow: hidden;
   margin: auto;
-	padding-bottom: 30px;
+  padding-bottom: 30px;
+  box-sizing: border-box;
 }
 
 .game-frame__sound-unlock {
@@ -253,16 +264,20 @@
 }
 
 .game-frame {
-	width: calc((100vh - 60px) * var(--game-frame-aspect-ratio));
+  width: min(100%, calc((100vh - 60px) * var(--game-frame-aspect-ratio)));
+  width: min(100%, calc((100dvh - 60px) * var(--game-frame-aspect-ratio)));
   aspect-ratio: var(--game-frame-aspect-ratio);
-	max-height: calc(100vh - 60px);
-	height: max-content;
+  max-width: 100%;
+  max-height: calc(100vh - 60px);
+  max-height: calc(100dvh - 60px);
+  height: auto;
   display: flex;
   position: relative;
   padding: var(--frame-bezel-size);
   overflow: hidden;
   border-radius: 18px;
   background: #000;
+  box-sizing: border-box;
   box-shadow:
     0 0 0 1px color-mix(in srgb, var(--color-accent-gold-soft) 28%, transparent),
     0 0 22px color-mix(in srgb, var(--color-accent-gold-soft) 22%, transparent),
@@ -355,4 +370,109 @@
   margin: 0;
   accent-color: var(--color-accent-gold-soft);
   cursor: pointer;
+}
+
+@include bp.mobile-down {
+  .landing {
+    height: auto;
+    min-height: 100dvh;
+    overflow-x: clip;
+    overflow-y: visible;
+    padding: 16px 14px 32px;
+  }
+
+  .layout {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .topbar {
+    order: 1;
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .topbar h1 {
+    font-size: clamp(1.2rem, 6vw, 1.7rem);
+    letter-spacing: 0.06em;
+  }
+
+  .subtitle {
+    margin-inline: auto;
+    max-width: 100%;
+    font-size: 0.88rem;
+  }
+
+  .game-panel {
+    order: 2;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: none;
+    padding-bottom: 0;
+  }
+
+  .game-frame {
+    width: min(100%, 26rem);
+    max-width: 100%;
+    max-height: min(72dvh, 36rem);
+    height: auto;
+    margin-inline: auto;
+  }
+
+  .right-panel {
+    order: 3;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .right-about {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .right-about__title {
+    text-align: center;
+  }
+
+  .right-about__text {
+    font-size: 0.86rem;
+    padding: 10px 12px;
+  }
+
+  .store-badges {
+    order: -1;
+  }
+
+  .left-panel {
+    order: 4;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    overflow: hidden;
+    padding-bottom: 0;
+    gap: 0;
+  }
+
+  .game-frame__controls {
+    padding: 1.4rem 0.55rem 0.55rem;
+    gap: 8px;
+  }
+
+  .game-frame__volume-slider {
+    width: min(4.2rem, 28vw);
+  }
 }

@@ -1,11 +1,32 @@
+import { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { EffectCreative, Autoplay } from 'swiper/modules'
+import { Autoplay } from 'swiper/modules'
 import { content } from '../../data/content'
 import HeroInfo from '../HeroInfo/HeroInfo'
 import 'swiper/css'
-import 'swiper/css/effect-creative'
+
+const MOBILE_MQ = '(max-width: 1199px)'
+
+function useMobileLayout() {
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined' ? window.matchMedia(MOBILE_MQ).matches : false,
+  )
+
+  useEffect(() => {
+    const media = window.matchMedia(MOBILE_MQ)
+    const sync = () => setIsMobile(media.matches)
+
+    sync()
+    media.addEventListener('change', sync)
+    return () => media.removeEventListener('change', sync)
+  }, [])
+
+  return isMobile
+}
 
 function HeroSlider({ heroes, onSlideChange }) {
+  const isMobile = useMobileLayout()
+
   const handleSlideChange = (swiper) => {
     onSlideChange?.(swiper.realIndex)
   }
@@ -13,12 +34,14 @@ function HeroSlider({ heroes, onSlideChange }) {
   return (
     <div className="hero-slider-wrap">
       <Swiper
+        key={isMobile ? 'mobile' : 'desktop'}
         className="hero-swiper"
-        modules={[EffectCreative, Autoplay]}
+        modules={[Autoplay]}
         autoplay={{
           delay: 20000,
           disableOnInteraction: false,
         }}
+        autoHeight={isMobile}
         slidesPerView={1}
         spaceBetween={0}
         loop

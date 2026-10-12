@@ -1,3 +1,5 @@
+@use '../base/breakpoints' as bp;
+
 .store-badges {
   position: absolute;
   inset: 0;
@@ -7,9 +9,12 @@
   justify-content: center;
   gap: 20px;
   width: 100%;
+  max-width: 100%;
   margin: 0;
   padding: 10px;
   pointer-events: none;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .store-badge {
@@ -18,12 +23,15 @@
   align-items: center;
   gap: 22px;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   min-height: 120px;
   padding: 18px 32px 18px 22px;
   background: color-mix(in srgb, var(--color-black) 62%, transparent);
   border: 1px solid var(--color-accent-gold-soft);
   color: var(--color-accent-gold-soft);
   text-decoration: none;
+  box-sizing: border-box;
   font-family:
     -apple-system,
     BlinkMacSystemFont,
@@ -77,8 +85,41 @@
 }
 
 .store-badge__name {
-  font-size: 2.2rem;
+  font-size: clamp(1.35rem, 2.4vw, 2.2rem);
   font-weight: 600;
   line-height: 1.1;
   letter-spacing: -0.02em;
+  overflow-wrap: break-word;
+}
+
+@include bp.mobile-down {
+  .store-badges {
+    position: static;
+    inset: auto;
+    gap: 12px;
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+    pointer-events: auto;
+    overflow: visible;
+  }
+
+  .store-badge {
+    min-height: 0;
+    gap: 12px;
+    padding: 12px 14px;
+  }
+
+  .store-badge__icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .store-badge__caption {
+    font-size: 0.78rem;
+  }
+
+  .store-badge__name {
+    font-size: 1.2rem;
+  }
 }

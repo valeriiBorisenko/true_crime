@@ -1,3 +1,5 @@
+@use './breakpoints' as bp;
+
 :root {
   font-family: 'TT2020E', serif;
 
@@ -30,8 +32,16 @@ body {
 	color: var(--color-text-light);
 }
 
+@include bp.mobile-down {
+  body {
+    background-attachment: scroll;
+  }
+}
+
 #root {
   min-height: 100vh;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 .visually-hidden {
